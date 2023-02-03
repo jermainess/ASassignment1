@@ -26,8 +26,6 @@ namespace WebApplication3.ViewModels
         [DataType(DataType.Text)]
         public string Delivery { get; set; }
 
-        //[DataType(DataType.ImageUrl)]
-        //public string ImageUrl { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -47,5 +45,7 @@ namespace WebApplication3.ViewModels
         public string ConfirmPassword { get; set; }
 
 
+        [DataType(DataType.ImageUrl)]
+        public string ImageUrl { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
 using WebApplication3.Model;
+using Microsoft.Extensions.Hosting;
 
 namespace WebApplication3.Pages
 {
@@ -15,11 +16,13 @@ namespace WebApplication3.Pages
 		private IWebHostEnvironment _environment;
 
 		[BindProperty]
-        public Register RModel { get; set; }
+		public IFormFile? Upload { get; set; }
 
 		[BindProperty]
-		public IFormFile? Upload { get; set; }
-		public RegisterModel(UserManager<ApplicationUser> userManager,
+        public Register RModel { get; set; }
+
+
+        public RegisterModel(UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment environment)
         {
             this.userManager = userManager;
@@ -34,20 +37,22 @@ namespace WebApplication3.Pages
         {
             if (ModelState.IsValid)
 			{
-				//if (Upload.Length > 2 * 1024 * 1024)
-				//{
-				//	ModelState.AddModelError("Upload", "File size cannot exceed 2MB.");
-				//	return Page();
-				//}
+                if (Upload!= null)
+                {
+                    if (Upload.Length > 2 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("Upload", "File size cannot exceed 2MB.");
+                        return Page();
+                    }
 
-				//var uploadsFolder = "uploads";
-				//var imageFile = Guid.NewGuid() + Path.GetExtension(Upload.FileName);
-				//var imagePath = Path.Combine(_environment.ContentRootPath, "wwwroot", uploadsFolder, imageFile);
-				//using var fileStream = new FileStream(imagePath, FileMode.Create);
-				//await Upload.CopyToAsync(fileStream);
-			 //   RModel.ImageUrl = string.Format("/{0}/{1}", uploadsFolder, imageFile);
-			 
-			var user = new ApplicationUser()
+                    var uploadsFolder = "uploads";
+                    var imageFile = Guid.NewGuid() + Path.GetExtension(Upload.FileName);
+                    var imagePath = Path.Combine(_environment.ContentRootPath, "wwwroot", uploadsFolder, imageFile);
+                    using var fileStream = new FileStream(imagePath, FileMode.Create);
+                    await Upload.CopyToAsync(fileStream);
+                    RModel.ImageUrl = string.Format("/{0}/{1}", uploadsFolder, imageFile);
+                }
+                var user = new ApplicationUser()
                 {
                     UserName= RModel.Email,
                     FullName = RModel.FullName,
@@ -57,9 +62,9 @@ namespace WebApplication3.Pages
                     CreditCard= RModel.CreditCard,
                     Gender= RModel.Gender,
                     AboutMe= RModel.AboutMe,
-                    //ImageURL= RModel.ImageUrl
+                    ImageURL = RModel.ImageUrl
 
-				};
+                };
 
                 // Create the User/Admin role if NOT exist (1)
                 // By running the application, It creates a role of "user" if the role is not found 

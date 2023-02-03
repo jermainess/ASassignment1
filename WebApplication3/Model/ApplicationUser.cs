@@ -18,12 +18,14 @@ namespace WebApplication3.Model
 		[Required]
 		public string Delivery { get; set; }
 
-		[MaxLength(50)]
-		public string? ImageURL { get; set; }
+	
 
 		[Required]
 		public string AboutMe { get; set; }
-	}
+
+        [MaxLength(50)]
+        public string? ImageURL { get; set; }
+    }
 	
 }
 

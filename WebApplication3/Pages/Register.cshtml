@@ -73,15 +73,14 @@
 					<span asp-validaton-for="RModel.ConfirmPassword" class="text-danger"></span>
 				</div>
 
-		@*		<div class="mb-3">
-					<input type="file" accept="image/*" asp-for="Upload"
+				<div class="mb-3">
+					<input type="file" accept="image/*" asp-for="RModel.ImageUrl" 
 						   class="form-control" onchange="showImgPreview(this)" />
-					<span asp-validation-for="Upload" class="text-danger"></span>
 				</div>
 				<img id="imgPreview" class="rounded-circle"
 					 style="height:100px;width:100px;object-fit:cover"
 					 src="/uploads/img.jpg" />
-*@
+
 
 				<div class="mb-3">
 					<label class="form-label" asp-for="RModel.AboutMe">About Me</label>
