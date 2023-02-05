@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebApplication3.Pages
+namespace ASassignment.Pages
 {
     [Authorize(Roles ="Admin")]
     public class AdminModel : PageModel

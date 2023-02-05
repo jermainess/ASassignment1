@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
-using WebApplication3.Model;
-using WebApplication3.ViewModels;
+using ASassignment.Model;
+using ASassignment.ViewModels;
 
-namespace WebApplication3.Pages
+namespace ASassignment.Pages
 {
     [Authorize]
 
@@ -25,9 +27,11 @@ namespace WebApplication3.Pages
         public ApplicationUser User { get; set; }
 
         public void OnGet()
-        { 
+        {
+			var dataProtectionProvider = DataProtectionProvider.Create("EncryptData");
+			var protector = dataProtectionProvider.CreateProtector("MySecretKey");
 
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+			var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
             {
                 TempData["FlashMessage.Type"] = "danger";
@@ -35,8 +39,17 @@ namespace WebApplication3.Pages
                 Redirect("/Register");
             }
             User = _userManager.FindByIdAsync(userId).Result;
-           
+            if (User.CreditCard != null)
+            {
+                User.CreditCard = protector.Unprotect(User.CreditCard);
+
+            }
+            else
+            {
+                Redirect("/Register");
+            }
+
 
         }
-    }
-}
+	}
+} 

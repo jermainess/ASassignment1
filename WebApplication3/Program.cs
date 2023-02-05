@@ -1,22 +1,24 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using WebApplication3.Model;
-
+using ASassignment.Model;
+using AspNetCore.ReCaptcha;
+using ASassignment.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.Configure<GoogleCaptchaConfig>(builder.Configuration.GetSection("GoogleRecaptcha"));
 builder.Services.AddDbContext<AuthDbContext>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
 builder.Services.ConfigureApplicationCookie(Config =>
 {
 	Config.LoginPath = "/Login";
 });
-builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
+builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAut h", options =>
 {
 	options.Cookie.Name = "MyCookieAuth";
-	options.AccessDeniedPath = "/Account/AccessDenied";
+	options.AccessDeniedPath = "/AccessDenied";
 });
 
 builder.Services.AddAuthorization(options =>
@@ -24,6 +26,16 @@ builder.Services.AddAuthorization(options =>
 	options.AddPolicy("MustBelongToAdmin",
 		policy => policy.RequireClaim("Role", "Admin"));
 });
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddDistributedMemoryCache(); //save session in memory
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout = TimeSpan.FromSeconds(30);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+});
+
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -35,6 +47,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 	options.Password.RequiredLength = 12;
 	options.Password.RequiredUniqueChars = 1;
 });
+builder.Services.AddDataProtection();
 
 var app = builder.Build();
 
@@ -48,7 +61,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
+ 
 app.UseStatusCodePagesWithRedirects("/errors/{0}");
 
 

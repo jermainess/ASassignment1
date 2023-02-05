@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace WebApplication3.ViewModels
+namespace ASassignment.ViewModels
 {
     public class Register
     {
@@ -45,7 +46,9 @@ namespace WebApplication3.ViewModels
         public string ConfirmPassword { get; set; }
 
 
-        [DataType(DataType.ImageUrl)]
-        public string ImageUrl { get; set; }
+        [BindProperty]
+        public IFormFile? Upload { get; set; }
+
+
     }
 }

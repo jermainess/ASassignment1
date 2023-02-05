@@ -1,18 +1,27 @@
 ﻿@page
 @model IndexModel
+
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @Model.User.FullName</h1>
-    <h3 class="display-6"> Email: @Model.User.Email</h3>
-    <h3 class="display-6"> Phone Number: @Model.User.PhoneNumber</h3>
-    <h3 class="display-6"> About Me: @Model.User.AboutMe</h3>
-       <h3 class="display-6"> Address: @Model.User.Delivery</h3>
-    <h3 class="display-6"> Gender: @Model.User.Gender</h3>
-    <h3 class="display-6"> Credit Card: @Model.User.CreditCard</h3>
-    <h3 class="display-6"> Photo: <img id="imgPreview" class="img-thumbnail" style="height:300px;width:300px;object-fit:cover" src="@(@Model.User.ImageURL)" /></h3>
+    <h1 class="display-4">Welcome @(Model.User.FullName  is not null ? Model.User.FullName: "-")</h1>
+    <h3 class="display-6"> Email: @(Model.User.Email is not null ? Model.User.Email: "-")</h3>
+    <h3 class="display-6"> Phone Number: @(Model.User.PhoneNumber is not null ? Model.User.PhoneNumber : "-")</h3>
+    <h3 class="display-6"> About Me: @(Model.User.AboutMe is not null ? Model.User.AboutMe : "-")</h3>
+    <h3 class="display-6"> Address: @(Model.User.Delivery is not null ? Model.User.Delivery : "-")</h3>
+    <h3 class="display-6"> Gender: @(Model.User.Gender is not null ? Model.User.Gender : "-")</h3>
+    <h3 class="display-6"> Credit Card: @(Model.User.CreditCard is not null ? Model.User.CreditCard : "-")</h3>
+    @if ( Model.User.ImageURL is not null)
+    {
+        <h3 class="display-6"> Photo: <img id="imgPreview" class="img-thumbnail" style="height:300px;width:300px;object-fit:cover" src="@(@Model.User.ImageURL)" /></h3>
+
+    }
+    @if (string.IsNullOrEmpty(Model.User.ImageURL))
+    {
+        <h3> Photo is null</h3>
+    }
 
 
 

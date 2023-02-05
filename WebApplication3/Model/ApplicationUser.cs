@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication3.Model
+namespace ASassignment.Model
 {
 	public class ApplicationUser : IdentityUser
 	{
 		[Required]
 		public string FullName { get; set; }
 
-		[Required]
+		[Required, MaxLength(16)]
 		public string CreditCard { get; set; }
 
 		[Required, MaxLength(1)]
@@ -18,12 +18,12 @@ namespace WebApplication3.Model
 		[Required]
 		public string Delivery { get; set; }
 
-	
 
 		[Required]
 		public string AboutMe { get; set; }
 
-        [MaxLength(50)]
+		[RegularExpression(@"^\w+\.(jpg|jpeg)$")]
+		[MaxLength(50) ]
         public string? ImageURL { get; set; }
     }
 	

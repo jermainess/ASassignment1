@@ -1,12 +1,16 @@
-using WebApplication3.ViewModels;
+using ASassignment.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
-using WebApplication3.Model;
+using ASassignment.Model;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.DataProtection;
+using AspNetCore.ReCaptcha;
+using System.Reflection;
+using System.Web.Helpers;
 
-namespace WebApplication3.Pages
+namespace ASassignment.Pages
 {
     public class RegisterModel : PageModel
     {
@@ -37,7 +41,10 @@ namespace WebApplication3.Pages
         {
             if (ModelState.IsValid)
 			{
-                if (Upload!= null)
+                var dataProtectionProvider = DataProtectionProvider.Create("EncryptData");
+                var protector= dataProtectionProvider.CreateProtector("MySecretKey");
+                var user = new ApplicationUser();
+				if (Upload!= null)
                 {
                     if (Upload.Length > 2 * 1024 * 1024)
                     {
@@ -50,21 +57,22 @@ namespace WebApplication3.Pages
                     var imagePath = Path.Combine(_environment.ContentRootPath, "wwwroot", uploadsFolder, imageFile);
                     using var fileStream = new FileStream(imagePath, FileMode.Create);
                     await Upload.CopyToAsync(fileStream);
-                    RModel.ImageUrl = string.Format("/{0}/{1}", uploadsFolder, imageFile);
+                    user.ImageURL = string.Format("/{0}/{1}", uploadsFolder, imageFile);
                 }
-                var user = new ApplicationUser()
-                {
-                    UserName= RModel.Email,
-                    FullName = RModel.FullName,
-                    Email = RModel.Email,
-                    PhoneNumber= RModel.PhoneNumber,
-                    Delivery = RModel.Delivery,
-                    CreditCard= RModel.CreditCard,
-                    Gender= RModel.Gender,
-                    AboutMe= RModel.AboutMe,
-                    ImageURL = RModel.ImageUrl
+                    user.UserName = RModel.Email;
 
-                };
+                    user.FullName = RModel.FullName;
+
+                    user.Email = RModel.Email;
+
+                    user.PhoneNumber = RModel.PhoneNumber;
+
+                    user.Delivery = RModel.Delivery;
+
+                    user.CreditCard = protector.Protect(RModel.CreditCard);
+                    user.Gender = RModel.Gender;
+
+                    user.AboutMe = RModel.AboutMe;
 
                 // Create the User/Admin role if NOT exist (1)
                 // By running the application, It creates a role of "user" if the role is not found 

@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\User\\OneDrive\\AS\\ASassignment\\WebApplication3\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebApplication3.bundle.scp.css",
-      "PackagePath": "staticwebassets\\WebApplication3.bundle.scp.css"
+      "Id": "C:\\Users\\User\\OneDrive\\AS\\ASassignment\\WebApplication3\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ASassignment.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ASassignment.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\User\\OneDrive\\AS\\ASassignment\\WebApplication3\\wwwroot\\css\\site.css",
@@ -249,20 +249,20 @@
       "PackagePath": "staticwebassets\\uploads\\img.jpg"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.WebApplication3.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.ASassignment.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.WebApplication3.props",
-      "PackagePath": "build\\WebApplication3.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.ASassignment.props",
+      "PackagePath": "build\\ASassignment.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.WebApplication3.props",
-      "PackagePath": "buildMultiTargeting\\WebApplication3.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.ASassignment.props",
+      "PackagePath": "buildMultiTargeting\\ASassignment.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.WebApplication3.props",
-      "PackagePath": "buildTransitive\\WebApplication3.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.ASassignment.props",
+      "PackagePath": "buildTransitive\\ASassignment.props"
     }
   ],
   "ElementsToRemove": []

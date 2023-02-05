@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApplication3.Model;
+using ASassignment.Model;
 
-namespace WebApplication3.Pages
+namespace ASassignment.Pages
 {
     public class LogoutModel : PageModel
     {
@@ -17,7 +17,10 @@ namespace WebApplication3.Pages
         {
             await signInManager.SignOutAsync();
             return RedirectToPage("Login");
+            
         }
+     
+        
         public async Task<IActionResult> OnPostDontLogoutAsync()
         {
             return RedirectToPage("Index");
