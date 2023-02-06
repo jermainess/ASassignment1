@@ -3918,19 +3918,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "D:\\Users\\210271e\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\OneDrive\\AS\\ASassignment\\WebApplication3\\ASassignment.csproj",
+      "projectUniqueName": "D:\\Users\\210271e\\Source\\Repos\\ASassignment1\\WebApplication3\\ASassignment.csproj",
       "projectName": "ASassignment",
-      "projectPath": "C:\\Users\\User\\OneDrive\\AS\\ASassignment\\WebApplication3\\ASassignment.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\OneDrive\\AS\\ASassignment\\WebApplication3\\obj\\",
+      "projectPath": "D:\\Users\\210271e\\Source\\Repos\\ASassignment1\\WebApplication3\\ASassignment.csproj",
+      "packagesPath": "D:\\Users\\210271e\\.nuget\\packages\\",
+      "outputPath": "D:\\Users\\210271e\\Source\\Repos\\ASassignment1\\WebApplication3\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "D:\\Users\\210271e\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4002,7 +4007,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   },

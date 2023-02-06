@@ -8,7 +8,7 @@ namespace ASassignment.Model
 		[Required]
 		public string FullName { get; set; }
 
-		[Required, MaxLength(16)]
+		[Required]
 		public string CreditCard { get; set; }
 
 		[Required, MaxLength(1)]
